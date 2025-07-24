@@ -1,2 +1,2 @@
-mod conduit;
-pub use conduit::Conduit;
+mod node;
+pub use node::Node;
