@@ -1,6 +1,6 @@
 use dioxus::{logger::tracing, prelude::*};
 
-use crate::game_info::GameState;
+use crate::game::GameState;
 
 #[component]
 pub fn Node(id: String, game_state: Signal<GameState>) -> Element {
