@@ -1,5 +1,5 @@
 pub mod game_state;
-pub use game_state::GameState;
+pub use game_state::GameManager;
 
-pub mod producer;
-pub use producer::Producer;
+pub mod node;
+pub use node::Node;
