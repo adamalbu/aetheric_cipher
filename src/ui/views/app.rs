@@ -1,5 +1,5 @@
-use crate::game::{GameManager, Node};
-use crate::ui::components::NodeElement;
+use crate::game::GameManager;
+use crate::ui::components::NexusInfo;
 
 use dioxus::prelude::*;
 use std::time::Duration;
@@ -12,24 +12,7 @@ const UI_UPDATE_RATE: u64 = 100;
 
 #[component]
 pub fn App() -> Element {
-    let mut game_state = use_signal(|| GameManager::new(10.0));
-
-    use_effect(move || {
-        // let conduit = Node::new(
-        //     "Node 1".into(),
-        //     2.0, // TODO: Change to 0 when added unlockable producers
-        //     Box::new(|current_flux| current_flux * 2.0), // TODO: Balance
-        // );
-        let node = Node::new_from_rates(
-            "Node 1".into(),
-            0.0,  // Base flux per second
-            1.02, // Flux per second growth rate
-            10.0, // Base cost
-            1.05, // Cost growth rate
-        );
-        let mut state = game_state.write();
-        state.nodes.insert("node1".into(), node);
-    });
+    let mut game_state = use_signal(|| GameManager::new_default());
 
     let mut dt = use_signal(|| Duration::new(0, 0));
 
@@ -49,12 +32,12 @@ pub fn App() -> Element {
         document::Link { rel: "stylesheet", href: MAIN_CSS }
         document::Link { rel: "stylesheet", href: TAILWIND_CSS }
 
-        pre { "Game state: {game_state:#?} " }
+        pre { "Game manager: {game_state:#?} " }
         span { "Elapsed {dt:?} " }
         div {
             class: "flex flex-row",
             span { "Flux: {game_state.read().flux:.1} "}
         }
-        NodeElement { id: "node1", game_state }
+        NexusInfo { id: "node1", game_state }
     }
 }

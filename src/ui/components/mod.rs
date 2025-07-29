@@ -1,2 +1,2 @@
-mod node;
-pub use node::NodeElement;
+mod nexus;
+pub use nexus::NexusInfo;

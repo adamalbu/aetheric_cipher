@@ -1,5 +1,7 @@
-pub mod game_state;
-pub use game_state::GameManager;
+pub mod game_manager;
+pub use game_manager::GameManager;
 
-pub mod node;
-pub use node::Node;
+pub mod nexus;
+pub use nexus::Nexus;
+
+pub mod equations;
